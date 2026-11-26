@@ -13,6 +13,8 @@ const LINE: string =
 
 // Gate-check the line the same way the sealed scorer will:
 // single line, valid UTF-8, 1–200 characters, not whitespace-only.
+// These checks run before any output is written, so a bad line fails
+// fast instead of producing an entry.txt the grader would reject.
 const chars: string[] = [...LINE];
 if (chars.length < 1 || chars.length > 200) {
   throw new Error(`line must be 1-200 characters, got ${chars.length}`);
